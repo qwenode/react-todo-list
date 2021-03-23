@@ -5,9 +5,13 @@ class Header extends Component {
         return (
             <header className="header">
                 <h1>todos</h1>
-                <input className="new-todo" placeholder="What needs to be done?" autoFocus/>
+                <input onKeyUp={this.handleKeyUp} className="new-todo" placeholder="需要做什么?" autoFocus/>
             </header>
         );
+    }
+
+    handleKeyUp = (event) => {
+        console.log(event.)
     }
 }
 

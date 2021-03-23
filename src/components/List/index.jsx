@@ -1,28 +1,19 @@
 import React, {Component} from 'react';
+import Item from "../Item";
 
 class List extends Component {
     render() {
+        const {todoList}=this.props
         return (
             <section className="main">
                 <input className="toggle-all" type="checkbox"/>
                 <ul className="todo-list">
+                    {
+                        todoList.map((todo)=>{
+                            return <Item todo={todo}/>
+                        })
+                    }
 
-                    <li className="completed">
-                        <div className="view">
-                            <input className="toggle" type="checkbox"/>
-                            <label>Taste JavaScript</label>
-                            <button className="destroy"/>
-                        </div>
-                        <input className="edit"/>
-                    </li>
-                    <li>
-                        <div className="view">
-                            <input className="toggle" type="checkbox"/>
-                            <label>Buy a unicorn</label>
-                            <button className="destroy"/>
-                        </div>
-                        <input className="edit"/>
-                    </li>
                 </ul>
             </section>
         );
