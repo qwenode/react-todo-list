@@ -11,7 +11,14 @@ class Header extends Component {
     }
 
     handleKeyUp = (event) => {
-        console.log(event.)
+        if (event.keyCode === 13) {
+            const d = event.target.value.trim();
+            if (d.length <= 0) {
+                return
+            }
+            event.target.value = ""
+            this.props.u(d)
+        }
     }
 }
 
