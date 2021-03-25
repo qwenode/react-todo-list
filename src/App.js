@@ -53,6 +53,22 @@ class App extends Component {
         this.setState({todos: t})
     };
 
+    getTotal() {
+        if (this.state.type === 1) {
+            return this.state.todos.reduce((pre, todo) => {
+                return pre + (todo.done === false ? 1 : 0)
+            }, 0)
+        }
+        if (this.state.type === 2) {
+            return this.state.todos.reduce((previousValue, currentValue) => {
+                return previousValue + (currentValue.done === true ? 1 : 0)
+            }, 0);
+        }
+        if (this.state.type === 0) {
+            return this.state.todos.length
+        }
+    };
+
     render() {
         return (
             <div className="App">
@@ -61,7 +77,7 @@ class App extends Component {
                     <List todoList={this.state.todos} listType={this.state.type} u={this.setTodo} d={this.delTodo}/>
 
                     <Footer clear={this.clearComplete} changeList={this.changeList} listType={this.state.type}
-                            total={this.state.todos.length}/>
+                            total={this.getTotal()}/>
                 </section>
             </div>
         );
