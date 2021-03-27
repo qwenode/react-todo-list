@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PubSub from "pubsub-js";
 
 class Header extends Component {
     render() {
@@ -16,8 +17,8 @@ class Header extends Component {
             if (d.length <= 0) {
                 return
             }
+            PubSub.publish('updateTodo', {title: d, act: 'add'})
             event.target.value = ""
-            this.props.u(d)
         }
     }
 }

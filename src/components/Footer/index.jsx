@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PubSub from "pubsub-js";
 
 
 class Footer extends Component {
@@ -8,24 +9,26 @@ class Footer extends Component {
                 <span className="todo-count"><strong>{this.props.total}</strong> item left</span>
                 <ul className="filters">
                     <li>
-                        <button onClick={this.props.changeList(0)}
+                        <button onClick={event => PubSub.publish('updateTodo', {act: 'type', type: 0})}
                                 className={this.props.listType === 0 ? "selected" : ""}>All
                         </button>
                     </li>
                     <li>
-                        <button onClick={this.props.changeList(1)}
+                        <button onClick={event => PubSub.publish('updateTodo', {act: 'type', type: 1})}
                                 className={this.props.listType === 1 ? "selected" : ""}>Active
                         </button>
                     </li>
                     <li>
-                        <button onClick={this.props.changeList(2)}
+                        <button onClick={event => PubSub.publish('updateTodo', {act: 'type', type: 2})}
                                 className={this.props.listType === 2 ? "selected" : ""}>Completed
                         </button>
                     </li>
 
                 </ul>
 
-                <button className="clear-completed" onClick={this.props.clear}>Clear completed</button>
+                <button className="clear-completed"
+                        onClick={event => PubSub.publish('updateTodo', {act: 'clear'})}>Clear completed
+                </button>
             </footer>
         );
     }
